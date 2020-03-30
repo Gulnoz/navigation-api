@@ -2,6 +2,8 @@ import React, {useState, useEffect}from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Navigation from './Components/Navigation'
+import { DragDropContext } from 'react-beautiful-dnd';
+
 // import figmaComponent from './figmaComponents'
 // import {Page,View, Text, Figma} from 'react-figma'
 
@@ -28,10 +30,13 @@ function App() {
     fetch("http://localhost:3000/api/navigation/links")
 
       .then(res => res.json())
-      .then(res => setNavigation(res.data))
+.then(res => {
+  console.log(res.data)
+  setNavigation(res.data)})
   },[]);
   
   let createLinkHendler=()=>{
+   
     fetch('http://localhost:3000/api/links',
     {
       method: 'POST',
@@ -39,7 +44,7 @@ function App() {
       body: JSON.stringify({
         title: '',
         url: '',
-        current_postion: navigation.length+1,
+        current_position: navigation.length+1,
         navigation_id: 1
       })
     })
@@ -57,11 +62,15 @@ function App() {
  setNavigation(links)
   }
   const updatedLinkHendler = (link) => {
+
     let newLinks = navigation.filter(nav => nav.id != link.id);
-    newLinks.push(link)
+    console.log(newLinks)
+    newLinks.splice(link.current_position-1,0,link)
+    console.log(newLinks)
     setNavigation(newLinks)
   }
   return (
+    
     <Navigation 
     navigation={navigation}
     createLinkHendler={createLinkHendler}

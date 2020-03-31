@@ -91,7 +91,7 @@ function App() {
         method: 'put',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          navigation: JSON.stringify({navigation})
+          navigation: JSON.stringify(navigation)
 
         })
       })

@@ -5,7 +5,6 @@ import styled from 'styled-components'
 import {Draggable } from 'react-beautiful-dnd';
 
 const StyledContainer = styled.div`
-
 background-color: wight;
 `;
 

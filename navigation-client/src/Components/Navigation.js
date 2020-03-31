@@ -8,7 +8,6 @@ position: 'relative';
 `;
 const StyledLinkList = styled.div`
 position: 'relative';
-margin:20px;
 `;
 
 function Navigation(props) {

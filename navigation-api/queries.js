@@ -86,7 +86,7 @@ function createLink(req, res, next) {
                                 data: data[0],
                                 message: 'Inserted one link'
                             });
-                        console.log(data[0])
+                        //console.log(data[0])
                     })
                     .catch(function (err) {
                         return next(err);
@@ -117,7 +117,7 @@ function updateLink(req, res, next) {
     let key = Object.keys(req.body)[0];
    
     let val = req.body[Object.keys(req.body)[0]]
-    console.log(val)
+    //console.log(val)
     db.one(`update links set ${key}='${val}' where id=$1 RETURNING *`,
         [
         parseInt(req.params.id)])
@@ -149,12 +149,32 @@ function removeLink(req, res, next) {
             return next(err);
         });
 }
+
+function updateLinks(req, res, next){
+    let {navigation} = req.body.navigation;
+    console.log(navigation)
+    let val = req.body.navigation['navigation'];
+    //let val = req.body[navigation]
+    const cs = new pgp.helpers.ColumnSet(['?id', 'current_position'], { table: 'links' });
+    const update = pgp.helpers.update(val, cs) + ' WHERE v.id = t.id';
+    db.none(update)
+        .then(() => {
+            console.log('success')
+        })
+        .catch(error => {
+            console.log(error)
+        });
+
+}
+
+
 module.exports = {
     getNavigation: getNavigation,
     getLinks: getLinks,
     getLink: getLink,
     getNavigationLinks: getNavigationLinks,
     createLink: createLink,
+    updateLinks: updateLinks,
     updateLink: updateLink,
     removeLink: removeLink
 };

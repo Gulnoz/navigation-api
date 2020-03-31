@@ -9,6 +9,7 @@ router.get('/api/links', db.getLinks);
 router.get('/api/links/:id', db.getLink);
 router.post('/api/links', db.createLink);
 router.put('/api/links/:id', db.updateLink);
+router.put('/api/navigation/:id', db.updateLinks);
 router.delete('/api/links/:id', db.removeLink);
 
 

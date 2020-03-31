@@ -1,8 +1,9 @@
 import React, {useState, useEffect}from 'react';
 import logo from './logo.svg';
 import './App.css';
+import '@atlaskit/css-reset';
 import Navigation from './Components/Navigation'
-import { DragDropContext } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable }  from 'react-beautiful-dnd';
 
 // import figmaComponent from './figmaComponents'
 // import {Page,View, Text, Figma} from 'react-figma'
@@ -44,7 +45,7 @@ function App() {
       body: JSON.stringify({
         title: '',
         url: '',
-        current_position: navigation.length+1,
+        current_position: navigation.length,
         navigation_id: 1
       })
     })
@@ -69,14 +70,46 @@ function App() {
     console.log(newLinks)
     setNavigation(newLinks)
   }
-  return (
+  let onDragEnd=(result)=>{
+    //console.log(parseInt(result.draggableId))
+    let sourceIdx = parseInt(result.source.index)
+    let destIdx = parseInt(result.destination.index)
     
-    <Navigation 
-    navigation={navigation}
-    createLinkHendler={createLinkHendler}
-      deleteLinkHendler={deleteLinkHendler}
-      updatedLinkHendler={updatedLinkHendler}
-   />
+    let draggedLink = navigation[sourceIdx]
+    let newNav = navigation.slice();
+    newNav.splice(sourceIdx,1);
+    newNav.splice(destIdx, 0, draggedLink)
+    newNav.forEach((el,idx)=>{
+       el.current_position=idx
+      
+    })
+    console.log(newNav)
+    setNavigation(newNav);
+    
+    fetch(`http://localhost:3000/api/navigation/1`,
+      {
+        method: 'put',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          navigation: JSON.stringify({navigation})
+
+        })
+      })
+  }
+  
+  return (
+    <DragDropContext
+    onDragEnd={onDragEnd}
+    >
+      <Navigation
+        navigation={navigation}
+        createLinkHendler={createLinkHendler}
+        deleteLinkHendler={deleteLinkHendler}
+        updatedLinkHendler={updatedLinkHendler}
+      />
+
+    </DragDropContext>
+   
     ) 
 }
 

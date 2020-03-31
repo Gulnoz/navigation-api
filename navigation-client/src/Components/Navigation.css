@@ -1,6 +1,6 @@
 
 #navigation{
-  position: relative;
+  position: absolute;
 width: 436px;
 height: 722px;
 
@@ -33,7 +33,7 @@ top: 0px;
 background: #DEDEDE;
 }
 .bg-text{
-  /* position: absolute; */
+  position: absolute;
 width: 72px;
 height: 18px;
 padding-left: 6px;

@@ -1,56 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import Form from './Form'
+import ReactDOM from 'react-dom';
+import Container from './Container'
+import styled from 'styled-components'
+import {Draggable } from 'react-beautiful-dnd';
+
+const StyledContainer = styled.div`
+
+background-color: wight;
+`;
+
 function Link(props) {
-    const [editLink, setEditLink] = useState(false);
-   
-    const [deleteLink, setDeleteLink] = useState(false);
-    const [groupEditDelete, setgroupEditDelete] = useState(false);
-    let groupEditDeleteHendler=()=>{
-        setgroupEditDelete(!groupEditDelete)
-        setEditLink(false)
-    }
-    let closeForm = (e) =>{
-        e.preventDefault();
-        console.log('closeForm')
-        setEditLink(false)
-    }
-    let editLinkHendler = () => {
-        setEditLink(!editLink)
-        setgroupEditDelete(false)
-    }
-    
-    
-    let deleteLinkHendler = (id) => {
-        console.log(id)
-        fetch(`http://localhost:3000/api/links/${id}`,
-            {
-                method: 'delete'
-            })
-            .then(() => {
-                props.deleteLinkHendler(id)
-            })
-
-    }
-
+    useEffect(()=>{
+        // if () console.log(result);
+    })
     return (
-      
-        <div class='group7'>
-           
-            <div class='card-package card-bg'> 
-                
-                <div class='name'> {editLink ? <Form closeForm={closeForm} updateLinkHendler={props.updateLinkHendler}link={props.link} /> : props.link.title}  </div> 
-                {!editLink ? <div id='edit-btn-div'><button class='btn-edit btn-edit-bg' onClick={groupEditDeleteHendler}>...</button> 
-                </div> : null}
-            </div>
-            {groupEditDelete ? <div id='group-edit-del'> 
-                <div ><button class='group-edit-del-btn' onClick={editLinkHendler}>edit</button></div>
-                <div><button class='group-edit-del-btn' onClick={() => {deleteLinkHendler(props.link.id)}}>delete</button></div> </div> : null}
+        <Draggable draggableId={`${props.link.id}`} index={props.index}>
+        {(provided)=>(
+        <StyledContainer
 
-            
-        </div>
-            
-     
-     
+        ref={provided.innerRef}
+        {...provided.draggableProps}
+        {...provided.dragHandleProps}>
+        <Container
+            link={props.link}
+            deleteLinkHendler={props.deleteLinkHendler}
+            updateLinkHendler = {props.updateLinkHendler}/>
+        </StyledContainer>
+        )}
+        </Draggable>
     );
 }
 

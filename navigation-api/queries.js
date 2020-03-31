@@ -25,7 +25,7 @@ function getLinks(req, res, next) {
         });
 }
 function getNavigationLinks(req, res, next) {
-    db.any('select * from links where navigation_id= 1')
+    db.any('select * from links where navigation_id= 1 order by current_position asc')
         .then(function (data) {
             res.status(200)
                 .json({
@@ -150,20 +150,40 @@ function removeLink(req, res, next) {
         });
 }
 
+
+
+
 function updateLinks(req, res, next){
-    let {navigation} = req.body.navigation;
-    console.log(navigation)
-    let val = req.body.navigation['navigation'];
+    
+    
+    let val = JSON.parse(req.body.navigation);
+    //console.log(typeof val)
+    // var colValues = val.forEach(obj=>Object.keys(obj).map(function (key) {
+    //     return req.body.navigation[key];
+    // });
+    console.log(val)
     //let val = req.body[navigation]
-    const cs = new pgp.helpers.ColumnSet(['?id', 'current_position'], { table: 'links' });
-    const update = pgp.helpers.update(val, cs) + ' WHERE v.id = t.id';
-    db.none(update)
-        .then(() => {
-            console.log('success')
+    //const cs = new pgp.helpers.ColumnSet(['?id', 'title', 'url', 'current_position'], { table: 'links' });
+    //console.log(cs)
+    try{
+        val.map((v)=>{
+            db.result(`UPDATE links set current_position = ${v.current_position} WHERE id=${v.id} ;`);
+            
         })
-        .catch(error => {
-            console.log(error)
-        });
+        //const update = pgp.helpers.update(val, cs) + ' WHERE v.id = t.id';
+    console.log('success')
+    }
+    catch(ex){
+    console.log(ex)
+    }
+     //console.log(update)
+    // db.none(update)
+    //     .then(() => {
+    //         console.log('success')
+    //     })
+    //     .catch(error => {
+    //         console.log(error)
+    //     });
 
 }
 

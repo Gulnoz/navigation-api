@@ -14,7 +14,7 @@ CREATE TABLE navigation (
   ID SERIAL PRIMARY KEY,
   name VARCHAR
 );
-INSERT INTO navigation (name) VALUES ('nav1');
+-- INSERT INTO navigation (name) VALUES ('nav1');
   
-INSERT INTO links (title, url, navigation_id)
-  VALUES ('Google', 'https://www.google.com/', '1');
+-- INSERT INTO links (title, url, navigation_id)
+--   VALUES ('Google', 'https://www.google.com/', '1');

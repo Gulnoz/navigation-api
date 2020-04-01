@@ -12,14 +12,14 @@ npm, PostgreSQL, Node
 
 ### npm install
 
-## Important: before running this, be sure your PostgreSQL Server is running on your mashine
+### Important: before running this, be sure your PostgreSQL Server is running on your mashine
 
 2) Create local database:
 
 ### psql -f navigation.sql
 
 
-## Importan: If you are going to run Client and Server applications in the same mashine,you should run first the server application.
+### Importan: If you are going to run Client and Server applications in the same mashine,you should run first the server application.
 
 3) Runs the app in the development mode.<br />
 

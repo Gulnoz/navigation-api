@@ -1,6 +1,7 @@
 # NAVIGATION APPLICATION
 
 Lets start with navigation application
+This application was built using React.js for frontend and Node.js and PostgreSQL for server
 
 ## Prerequisites:
 
@@ -11,17 +12,6 @@ npm, PostgreSQL, Node
 ## INTALATION:
 
 ## Clone the repo and open project's root folder 
-
-## Install all dependencies the root folder terminal you should run in :
-
-### npm install
-
-## Important: before running this, be sure your PostgreSQL Server is running on your mashine
-
-## Create local database:
-
-### psql -f navigation.sql
-
 
 ## Install server aplication [Navigation-API](https://github.com/Gulnoz/navigation-api/tree/master/navigation-api)
 

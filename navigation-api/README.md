@@ -31,29 +31,29 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 ## API Reference:
 example: http://localhost:3000/api/navigation/:id
 
-This web servise provides folowing endpoints:
+### This web servise provides folowing endpoints:
 
-//To get links using navigation id
+To get links using navigation id:
 
 get('/api/navigation/:id', db.getNavigationLinks);
 
-//To create link using navigation id
+To create link using navigation id:
 
 post('/api/links', db.createLink);
 
-//To create navigation instance if needed
+To create navigation instance if needed:
 
 post('/api/navigation', db.createNavigation);
 
-//Update link using link id
+Update link using link id:
 
 put('/api/links/:id', db.updateLink);
 
-//Update link position in navigation using navigation id
+Update link position in navigation using navigation id:
 
 put('/api/navigation/:id', db.updateLinks);
 
-//Delete link using link id
+Delete link using link id:
 
 delete('/api/links/:id', db.removeLink);
 

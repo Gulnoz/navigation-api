@@ -50,3 +50,20 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 
 
+//Import db_file into your postgresql
+
+//Create db using terminal
+
+Download the db_file
+
+Using terminal run psql using following:
+
+$ psql
+
+When you in psql run following:
+
+$ create database db_name
+
+Using terminal go to database file directory and run the following:
+
+$ psql created_db_name < db_file_name.sql

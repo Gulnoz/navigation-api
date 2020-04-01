@@ -1,41 +1,52 @@
-NAVIGATION-API
+# NAVIGATION-API
 
-Prerequisites:
+## Prerequisites:
 
 Before you begin, ensure you have installed the latest version of:
 
-npm, PostgreSQL, Node, Express, pg-promise, nodemon
+npm, PostgreSQL, Node
+
+## INTALATION:
+
+//Install all dependencies:
+### npm install
+
+//Important: before running this, be sure your PostgreSQL Server is running on your mashine
+
+//Create local db:
+### psql -f navigation.sql
 
 
-Install the Express Generator:
-
-$ npm install express-generator@4 -g
-
-Install pg-promise:
-
-$ npm install pg-promise@5 --save
-
-Install nodemon:
-npm install -g nodemon@1.18.5
-
-API Reference:
-example: http://localhost:3000/api/navigation/links
+## API Reference:
+example: http://localhost:3000/api/navigation/:id
 
 This web servise provides folowing endpoints:
 
-GET '/api/navigation',
-GET '/api/navigation/links',
-GET '/api/links',
-GET '/api/links/:id',
-POST '/api/links',
-PUT '/api/links/:id',
-DELETE '/api/links/:id'
+//To get links using navigation id
+get('/api/navigation/:id', db.getNavigationLinks);
 
-Start the server:
+//To create link using navigation id
+post('/api/links', db.createLink);
 
-$ npm start or $ nodemon index.js
+//To create navigation instance if needed
+post('/api/navigation', db.createNavigation);
 
-follow link: http://localhost:3000/
+//Update link using link id
+put('/api/links/:id', db.updateLink);
 
-To Create database run:
-$ psql -f navigation.sql
+//Update link position in navigation using navigation id
+put('/api/navigation/:id', db.updateLinks);
+
+//Delete link using link id
+delete('/api/links/:id', db.removeLink);
+
+## Importan: If you are going to run Client and Server applications in the same mashine,you should run first the server application.
+
+Runs the app in the development mode.<br />
+
+### `npm start`
+
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+
+

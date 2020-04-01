@@ -8,20 +8,6 @@ var pgp = require('pg-promise')(options);
 var connectionString = 'postgres://localhost:5432/navigation_db';
 var db = pgp(connectionString);
 
-function getLinks(req, res, next) {
-    db.any('select * from links')
-        .then(function (data) {
-            res.status(200)
-                .json({
-                    status: 'success',
-                    data: data,
-                    message: 'Retrieved ALL links'
-                });
-        })
-        .catch(function (err) {
-            return next(err);
-        });
-}
 function getNavigationLinks(req, res, next) {
     db.any(`select * from links where navigation_id = ${req.params.id} order by current_position asc`)
         .then(function (data) {
@@ -36,42 +22,15 @@ function getNavigationLinks(req, res, next) {
             return next(err);
         });
 }
-function getNavigation(req, res, next) {
-    db.one('select * from navigation')
-        .then(function (data) {
-            res.status(200)
-                .json({
-                    status: 'success',
-                    data: data,
-                    message: 'Retrieved navigation'
-                });
-        })
-        .catch(function (err) {
-            return next(err);
-        });
-}
-function getLink(req, res, next) {
-    var linkID = parseInt(req.params.id);
-    db.one('select * from links where id = $1', linkID)
-        .then(function (data) {
-            res.status(200)
-                .json({
-                    status: 'success',
-                    data: data,
-                    message: 'Retrieved ONE link'
-                });
-        })
-        .catch(function (err) {
-            return next(err);
-        });
-}
+
 function createLink(req, res, next) {
     let countRows;
-    db.any('select count(*) from links where navigation_id=1')
+    db.any(`select count(*) from links where navigation_id=${req.body.navigation_id}`)
         .then(function (data) {
             countRows = parseInt(data[0]['count'])
+            let current_position = parseInt(req.body.current_position)
             if(countRows<5){
-                db.any(`INSERT INTO links(title, url, navigation_id) VALUES('${req.body.title}', '${req.body.url}', ${req.body.navigation_id}) RETURNING *;`
+                db.any(`INSERT INTO links(title, url, current_position, navigation_id) VALUES('${req.body.title}', '${req.body.url}', ${current_position}, ${req.body.navigation_id}) RETURNING *;`
                 , req.body
                 )
                     .then(function (data) {
@@ -162,9 +121,6 @@ function createNavigation(req, res, next){
 }
 
 module.exports = {
-    getNavigation: getNavigation,
-    getLinks: getLinks,
-    getLink: getLink,
     getNavigationLinks: getNavigationLinks,
     createLink: createLink,
     updateLinks: updateLinks,

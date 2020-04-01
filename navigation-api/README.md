@@ -1,5 +1,32 @@
 # NAVIGATION-API
 
+This application was built using Node.js and PostgreSQL
+
+## Prerequisites:
+
+Before you begin, ensure you have installed the latest version of:
+
+npm, PostgreSQL, Node
+
+1) Install all dependencies in the root folder terminal you should run:
+
+### npm install
+
+## Important: before running this, be sure your PostgreSQL Server is running on your mashine
+
+2) Create local database:
+
+### psql -f navigation.sql
+
+
+## Importan: If you are going to run Client and Server applications in the same mashine,you should run first the server application.
+
+3) Runs the app in the development mode.<br />
+
+### `npm start`
+
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
 
 ## API Reference:
 example: http://localhost:3000/api/navigation/:id
@@ -24,30 +51,5 @@ put('/api/navigation/:id', db.updateLinks);
 //Delete link using link id
 delete('/api/links/:id', db.removeLink);
 
-## Importan: If you are going to run Client and Server applications in the same mashine,you should run first the server application.
-
-Runs the app in the development mode.<br />
-
-### `npm start`
-
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 
-
-//Import db_file into your postgresql
-
-//Create db using terminal
-
-Download the db_file
-
-Using terminal run psql using following:
-
-$ psql
-
-When you in psql run following:
-
-$ create database db_name
-
-Using terminal go to database file directory and run the following:
-
-$ psql created_db_name < db_file_name.sql

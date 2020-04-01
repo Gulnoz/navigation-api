@@ -1,21 +1,5 @@
 # NAVIGATION-API
 
-## Prerequisites:
-
-Before you begin, ensure you have installed the latest version of:
-
-npm, PostgreSQL, Node
-
-## INTALATION:
-
-//Install all dependencies:
-### npm install
-
-//Important: before running this, be sure your PostgreSQL Server is running on your mashine
-
-//Create local db:
-### psql -f navigation.sql
-
 
 ## API Reference:
 example: http://localhost:3000/api/navigation/:id

@@ -2,11 +2,17 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Prerequisites:
 
-In the project directory, you can run:
+Before you begin, ensure you have installed the latest version of:
 
-## Importan: If you are going to run Client and Server applications in the same mashine, you should run first the server application.
+npm, PostgreSQL, Node
+
+1) Install all dependencies in the navigation-client root folder terminal you should run:
+
+## `npm install`
+
+### Importan: If you are going to run Client and Server applications in the same mashine, you should run first the server application.
 
 ### `npm start`
 

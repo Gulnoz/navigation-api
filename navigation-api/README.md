@@ -8,15 +8,15 @@ Before you begin, ensure you have installed the latest version of:
 
 npm, PostgreSQL, Node
 
-1) Install all dependencies in the root folder terminal you should run:
+1) Install all dependencies in the navigation-api root folder terminal you should run:
 
-### npm install
+### `npm install`
 
 ### Important: before running this, be sure your PostgreSQL Server is running on your mashine
 
 2) Create local database:
 
-### psql -f navigation.sql
+### `psql -f navigation.sql`
 
 
 ### Importan: If you are going to run Client and Server applications in the same mashine,you should run first the server application.

@@ -6,8 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-## Importan: If you are going to run Client and Server applications in the same mashine, 
-you should run first the server application.
+## Importan: If you are going to run Client and Server applications in the same mashine, you should run first the server application.
 
 ### `npm start`
 

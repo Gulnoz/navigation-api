@@ -10,14 +10,14 @@ npm, PostgreSQL, Node
 
 ## INTALATION:
 
-## Clone the repo and open project's root folder 
+## This Repo combines two application Navigation-UI and Navigation-API, you just need to clone current repo.
 
-## Install server aplication [Navigation-API](https://github.com/Gulnoz/navigation-api/tree/master/navigation-api)
+### Server aplication [Navigation-API](https://github.com/Gulnoz/navigation-api/tree/master/navigation-api)
 
-## Install client aplication [Navigation-UI](https://github.com/Gulnoz/navigation-api/tree/master/navigation-client)
+### Client aplication [Navigation-UI](https://github.com/Gulnoz/navigation-api/tree/master/navigation-client)
 
 
-Just incase if you have external database file and you need to import it:
+If you have external database file and you need to import it otherwise ignore next instraction!
 
 ### Instraction to import external database into your PostgreSQL server:
 

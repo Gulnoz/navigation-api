@@ -8,9 +8,9 @@ const StyledContainer = styled.div`
 margin: 8px 6px;
 display: flex;
 justify-content: space-between;
-cursor: pointer;
-border: 1px solid rgba(0, 0, 0, 0.3);
-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.13);
+cursor: ${props => (props.isDragging ? 'grab' : 'pointer')}  
+border: ${props => (props.isDragging ? '1px solid rgba(0, 0, 0, 0.85)' : '1px solid rgba(0, 0, 0, 0.3);')}
+box-shadow: ${props => (props.isDragging ? '0px 10px 20px rgba(0, 0, 0, 0.19);' : '0px 2px 3px rgba(0, 0, 0, 0.13);')} 
 border-radius: 1px;
 background-color: ${props => (props.isDragging ? '#DEDEDE': 'white')};
 `;

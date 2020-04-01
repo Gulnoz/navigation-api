@@ -2,14 +2,14 @@
 
 Lets start with navigation application
 
-##Install server aplication [Navigation-API](https://github.com/Gulnoz/navigation-api/tree/master/navigation-api)
+## Install server aplication [Navigation-API](https://github.com/Gulnoz/navigation-api/tree/master/navigation-api)
 
-##Install client aplication [Navigation-UI](https://github.com/Gulnoz/navigation-api/tree/master/navigation-client)
+## Install client aplication [Navigation-UI](https://github.com/Gulnoz/navigation-api/tree/master/navigation-client)
 
 
 Just incase if you have external database file and you need to import it:
 
-###Instraction to import external database into your PostgreSQL server:
+### Instraction to import external database into your PostgreSQL server:
 
 //Create db using terminal
 

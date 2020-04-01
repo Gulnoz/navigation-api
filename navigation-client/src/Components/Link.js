@@ -1,57 +1,38 @@
 import React, { useState, useEffect } from 'react';
-import Form from './Form'
+import ReactDOM from 'react-dom';
+import LinkContainer from './LinkContainer'
+import styled from 'styled-components'
+import {Draggable} from 'react-beautiful-dnd';
+
+const StyledContainer = styled.div`
+margin: 8px 6px;
+display: flex;
+justify-content: space-between;
+cursor: ${props => (props.isDragging ? 'grab' : 'pointer')}  
+border: ${props => (props.isDragging ? '1px solid rgba(0, 0, 0, 0.85)' : '1px solid rgba(0, 0, 0, 0.3);')}
+box-shadow: ${props => (props.isDragging ? '0px 10px 20px rgba(0, 0, 0, 0.19);' : '0px 2px 3px rgba(0, 0, 0, 0.13);')} 
+border-radius: 1px;
+background-color: ${props => (props.isDragging ? '#DEDEDE': 'white')};
+`;
+//RENDER LINK CONTAINER
+//Using Draggable component to be able drag the link
 function Link(props) {
-    const [editLink, setEditLink] = useState(false);
-   
-    const [deleteLink, setDeleteLink] = useState(false);
-    const [groupEditDelete, setgroupEditDelete] = useState(false);
-    let groupEditDeleteHendler=()=>{
-        setgroupEditDelete(!groupEditDelete)
-        setEditLink(false)
-    }
-    let closeForm = (e) =>{
-        e.preventDefault();
-        console.log('closeForm')
-        setEditLink(false)
-    }
-    let editLinkHendler = () => {
-        setEditLink(!editLink)
-        setgroupEditDelete(false)
-    }
-    
-    
-    let deleteLinkHendler = (id) => {
-        console.log(id)
-        fetch(`http://localhost:3000/api/links/${id}`,
-            {
-                method: 'delete'
-            })
-            .then(() => {
-                props.deleteLinkHendler(id)
-            })
-
-    }
-
     return (
-      
-        <div class='group7'>
-           
-            <div class='card-package card-bg'> 
-                
-                <div class='name'> {editLink ? <Form closeForm={closeForm} updateLinkHendler={props.updateLinkHendler}link={props.link} /> : props.link.title}  </div> 
-                {!editLink ? <div id='edit-btn-div'><button class='btn-edit btn-edit-bg' onClick={groupEditDeleteHendler}>...</button> 
-                </div> : null}
-            </div>
-            {groupEditDelete ? <div id='group-edit-del'> 
-                <div ><button class='group-edit-del-btn' onClick={editLinkHendler}>edit</button></div>
-                <div><button class='group-edit-del-btn' onClick={() => {deleteLinkHendler(props.link.id)}}>delete</button></div> </div> : null}
-
-            
-        </div>
-            
-     
-     
+        <Draggable draggableId={`${props.link.id}`} index={props.index}>
+        {(provided, snapshot)=>(
+        <StyledContainer
+        id='styled-cont'
+        ref={provided.innerRef}
+        isDragging={snapshot.isDragging}
+        {...provided.draggableProps}
+        {...provided.dragHandleProps}>
+        <LinkContainer
+            link={props.link}
+            deleteLinkHendler={props.deleteLinkHendler}
+            updateLinkHendler = {props.updateLinkHendler}/>
+        </StyledContainer>
+        )}
+        </Draggable>
     );
 }
-
 export default Link;

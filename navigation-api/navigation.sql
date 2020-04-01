@@ -16,5 +16,3 @@ CREATE TABLE navigation (
 );
 INSERT INTO navigation (name) VALUES ('nav1');
   
-INSERT INTO links (title, url, navigation_id)
-  VALUES ('Google', 'https://www.google.com/', '1');

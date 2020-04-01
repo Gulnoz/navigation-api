@@ -12,6 +12,8 @@ npm, PostgreSQL, Node
 
 ## This Repo combines two application Navigation-UI and Navigation-API, you just need to clone current repo.
 
+## Install all dependencies:
+
 ### Server aplication [Navigation-API](https://github.com/Gulnoz/navigation-api/tree/master/navigation-api)
 
 ### Client aplication [Navigation-UI](https://github.com/Gulnoz/navigation-api/tree/master/navigation-client)

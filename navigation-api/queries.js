@@ -1,7 +1,6 @@
 var promise = require('bluebird');
 
 var options = {
-    // Initialization Options
     promiseLib: promise
 };
 
@@ -9,7 +8,6 @@ var pgp = require('pg-promise')(options);
 var connectionString = 'postgres://localhost:5432/navigation_db';
 var db = pgp(connectionString);
 
-// add query functions
 function getLinks(req, res, next) {
     db.any('select * from links')
         .then(function (data) {
@@ -25,7 +23,7 @@ function getLinks(req, res, next) {
         });
 }
 function getNavigationLinks(req, res, next) {
-    db.any('select * from links where navigation_id= 1 order by current_position asc')
+    db.any(`select * from links where navigation_id = ${req.params.id} order by current_position asc`)
         .then(function (data) {
             res.status(200)
                 .json({
@@ -68,9 +66,6 @@ function getLink(req, res, next) {
         });
 }
 function createLink(req, res, next) {
-    // req.body.age = parseInt(req.body.age);
-    
-    //; SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
     let countRows;
     db.any('select count(*) from links where navigation_id=1')
         .then(function (data) {
@@ -86,41 +81,25 @@ function createLink(req, res, next) {
                                 data: data[0],
                                 message: 'Inserted one link'
                             });
-                        //console.log(data[0])
                     })
                     .catch(function (err) {
                         return next(err);
                     });
             }
             else{
-               
                     res.json({
                         status: 'error',
                         data: data[0],
                         message: 'Links limit reached!'
-                    })
-                
-            }
-                
-                        
-                       
-                  
-               
-           
-            } 
-            )
-       
-
-   
+                    })     
+                }
+        })
 }
 function updateLink(req, res, next) {
     let key = Object.keys(req.body)[0];
-   
     let val = req.body[Object.keys(req.body)[0]]
-    //console.log(val)
     db.one(`update links set ${key}='${val}' where id=$1 RETURNING *`,
-        [
-        parseInt(req.params.id)])
+        [parseInt(req.params.id)])
         .then(function (data) {
             res.status(200)
                 .json({
@@ -137,56 +116,50 @@ function removeLink(req, res, next) {
     var linkID = parseInt(req.params.id);
     db.result('delete from links where id = $1', linkID)
         .then(function (result) {
-            /* jshint ignore:start */
             res.status(200)
                 .json({
                     status: 'success',
                     message: `Removed ${result.rowCount} link`
                 });
-            /* jshint ignore:end */
         })
         .catch(function (err) {
             return next(err);
         });
 }
 
-
-
-
 function updateLinks(req, res, next){
-    
-    
     let val = JSON.parse(req.body.navigation);
-    //console.log(typeof val)
-    // var colValues = val.forEach(obj=>Object.keys(obj).map(function (key) {
-    //     return req.body.navigation[key];
-    // });
     console.log(val)
-    //let val = req.body[navigation]
-    //const cs = new pgp.helpers.ColumnSet(['?id', 'title', 'url', 'current_position'], { table: 'links' });
-    //console.log(cs)
     try{
         val.map((v)=>{
             db.result(`UPDATE links set current_position = ${v.current_position} WHERE id=${v.id} ;`);
-            
         })
-        //const update = pgp.helpers.update(val, cs) + ' WHERE v.id = t.id';
     console.log('success')
     }
     catch(ex){
     console.log(ex)
     }
-     //console.log(update)
-    // db.none(update)
-    //     .then(() => {
-    //         console.log('success')
-    //     })
-    //     .catch(error => {
-    //         console.log(error)
-    //     });
-
 }
 
+function createNavigation(req, res, next){
+    let countRows;
+    db.any('select count(*) from navigation')
+        .then(function (data) {
+            countRows = parseInt(data[0]['count'])
+    db.one(`INSERT INTO navigation(name) VALUES('nav-${countRows}') RETURNING *;`)
+        .then(function (nav) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: nav,
+                    message: 'Inserted one navigation'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
+})
+}
 
 module.exports = {
     getNavigation: getNavigation,
@@ -196,6 +169,7 @@ module.exports = {
     createLink: createLink,
     updateLinks: updateLinks,
     updateLink: updateLink,
-    removeLink: removeLink
+    removeLink: removeLink,
+    createNavigation: createNavigation,
 };
 

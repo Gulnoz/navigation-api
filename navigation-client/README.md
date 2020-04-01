@@ -16,6 +16,14 @@ npm, PostgreSQL, Node
 
 ### `npm start`
 
-
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+If you are running another app in the terminal you will get this message:
+"Would you like to run the app on another port instead? (Y/n)"
+
+Type `y` and enter.
+
+Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
+
+

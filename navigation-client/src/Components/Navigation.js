@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import LinkList from './LinkList'
 import styled from 'styled-components'
-// import './Navigation.css'
-import { Droppable, Draggable } from 'react-beautiful-dnd';
+import { Droppable} from 'react-beautiful-dnd';
+
 const Container = styled.div`
 position: 'relative';
 `;
@@ -15,13 +15,15 @@ function Navigation(props) {
         <Container>
         <div id='navigation'>
         <div id='zonee' >
-        <div class='Rectangle'>
-        <div class='bg'><div class='bg-text'>Navigation</div> 
-        <div class='bg-text-add'
+        <div className='Rectangle'>
+        <div className='bg'><div className='bg-text'>Navigation</div> 
+        <div className='bg-text-add'
         onClick={()=>props.createLinkHendler()}>+item</div> 
         </div>
         {props.navigation ?
-        <Droppable droppableId={'1'}>
+           //Using Droppable component from react-beautiful-dnd 
+           //to be able to drop draged component in LinkList component
+            <Droppable droppableId={`props.navigationId`}>
             {provided =>(
             <StyledLinkList 
             ref={provided.innerRef}

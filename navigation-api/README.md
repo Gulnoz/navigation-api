@@ -35,27 +35,27 @@ example: http://localhost:3000/api/navigation/:id
 
 To get links using navigation id:
 
-get('/api/navigation/:id', db.getNavigationLinks);
+get('/api/navigation/:id');
 
 To create link using navigation id:
 
-post('/api/links', db.createLink);
+post('/api/links');
 
 To create navigation instance if needed:
 
-post('/api/navigation', db.createNavigation);
+post('/api/navigation');
 
 Update link using link id:
 
-put('/api/links/:id', db.updateLink);
+put('/api/links/:id');
 
 Update link position in navigation using navigation id:
 
-put('/api/navigation/:id', db.updateLinks);
+put('/api/navigation/:id');
 
 Delete link using link id:
 
-delete('/api/links/:id', db.removeLink);
+delete('/api/links/:id');
 
 
 

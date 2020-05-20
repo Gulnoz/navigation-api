@@ -10,7 +10,7 @@ function LinkList(props) {
         let value = e.target.value;
         let name = e.target.name;
 
-        fetch(`http://localhost:3000/api/links/${id}`,
+        fetch(`https://navigation-apii.herokuapp.com/api/links/${id}`,
             {
                 method: 'put',
                 headers: { 'Content-Type': 'application/json' },

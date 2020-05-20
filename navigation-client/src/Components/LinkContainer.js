@@ -27,7 +27,7 @@ function LinkContainer(props) {
 //DELETE link request to the server to delete link from navigation
     let deleteLinkHendler = (id) => {
         console.log(id)
-        fetch(`http://localhost:3000/api/links/${id}`,
+        fetch(`https://navigation-apii.herokuapp.com/api/links/${id}`,
             { method: 'delete'})
             .then(() => {
  //Callback function to update state in App.js               

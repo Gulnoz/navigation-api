@@ -10,18 +10,9 @@ function App() {
   const [navigation, setNavigation] = useState(null);
   const [navigationId, setNavigationId] = useState(1);
   useEffect(() => {
-    //CREATE Navigation request
-    // fetch('http://localhost:3000/api/navigation',
-    //   {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //  
-    //   })
-    //   .then(res => res.json())
-    //   .then(nav=>setNavigationId(nav.id));
   
     // GET Links using navigation id request from the server
-    fetch(`http://localhost:3000/api/navigation/${navigationId}`)
+    fetch(`https://navigation-apii.herokuapp.com/api/navigation/${navigationId}`)
       .then(res => res.json())
       .then(res => {
             setNavigation(res.data)})
@@ -29,7 +20,7 @@ function App() {
   
   // CREATE new link request to the server
   let createLinkHendler=()=>{
-    fetch('http://localhost:3000/api/links',
+    fetch('https://navigation-apii.herokuapp.com/api/links',
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -81,7 +72,7 @@ let newLinks = navigation.filter(nav => nav.id != link.id);
     setNavigation(newNav);
 
   //UPDATE navigation links current_position request to the server
-    fetch(`http://localhost:3000/api/navigation/${navigationId}`,
+    fetch(`https://navigation-apii.herokuapp.com/api/navigation/${navigationId}`,
       {
         method: 'put',
         headers: { 'Content-Type': 'application/json' },

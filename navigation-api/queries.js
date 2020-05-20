@@ -9,6 +9,7 @@ var connectionString = 'postgres://localhost:5432/navigation_db';
 var db = pgp(connectionString);
 
 function getNavigationLinks(req, res, next) {
+
     db.any(`select * from links where navigation_id = ${req.params.id} order by current_position asc`)
         .then(function (data) {
             res.status(200)
@@ -30,7 +31,9 @@ function createLink(req, res, next) {
             countRows = parseInt(data[0]['count'])
             let current_position = parseInt(req.body.current_position)
             if(countRows<5){
+
                 db.any(`INSERT INTO links(title, url, current_position, navigation_id) VALUES('${req.body.title}', '${req.body.url}', ${current_position}, ${req.body.navigation_id}) RETURNING *;`
+
                 , req.body
                 )
                     .then(function (data) {

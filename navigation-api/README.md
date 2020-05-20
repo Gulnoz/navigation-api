@@ -1,69 +1,61 @@
 # NAVIGATION-API
 
+This application was built using Node.js and PostgreSQL
+
 ## Prerequisites:
 
 Before you begin, ensure you have installed the latest version of:
 
 npm, PostgreSQL, Node
 
-## INTALATION:
+1) Install all dependencies in the navigation-api root folder terminal you should run:
 
-//Install all dependencies:
-### npm install
+### `npm install`
 
-//Important: before running this, be sure your PostgreSQL Server is running on your mashine
+### Important: before running this, be sure your PostgreSQL Server is running on your mashine
 
-//Create local db:
-### psql -f navigation.sql
+2) Create local database:
+
+### `psql -f navigation.sql`
 
 
-## API Reference:
-example: http://localhost:3000/api/navigation/:id
+### Importan: If you are going to run Client and Server applications in the same mashine,you should run first the server application.
 
-This web servise provides folowing endpoints:
-
-//To get links using navigation id
-get('/api/navigation/:id', db.getNavigationLinks);
-
-//To create link using navigation id
-post('/api/links', db.createLink);
-
-//To create navigation instance if needed
-post('/api/navigation', db.createNavigation);
-
-//Update link using link id
-put('/api/links/:id', db.updateLink);
-
-//Update link position in navigation using navigation id
-put('/api/navigation/:id', db.updateLinks);
-
-//Delete link using link id
-delete('/api/links/:id', db.removeLink);
-
-## Importan: If you are going to run Client and Server applications in the same mashine,you should run first the server application.
-
-Runs the app in the development mode.<br />
+3) Runs the app in the development mode.<br />
 
 ### `npm start`
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 
+## API Reference:
+example: http://localhost:3000/api/navigation/:id
 
-//Import db_file into your postgresql
+### This web servise provides folowing endpoints:
 
-//Create db using terminal
+To get links using navigation id:
 
-Download the db_file
+get('/api/navigation/:id');
 
-Using terminal run psql using following:
+To create link using navigation id:
 
-$ psql
+post('/api/links');
 
-When you in psql run following:
+To create navigation instance if needed:
 
-$ create database db_name
+post('/api/navigation');
 
-Using terminal go to database file directory and run the following:
+Update link using link id:
 
-$ psql created_db_name < db_file_name.sql
+put('/api/links/:id');
+
+Update link position in navigation using navigation id:
+
+put('/api/navigation/:id');
+
+Delete link using link id:
+
+delete('/api/links/:id');
+
+
+

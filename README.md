@@ -2,6 +2,10 @@
 
 This application was built using React.js for frontend and Node.js and PostgreSQL for server
 
+![](https://github.com/Gulnoz/Gif-repo/blob/main/ezgif.com-gif-maker.gif)
+
+
+
 ## Prerequisites:
 
 Before you begin, ensure you have installed the latest version of:

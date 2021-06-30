@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
   
     // GET Links using navigation id request from the server
-    fetch(`https://navigation-apii.herokuapp.com/api/navigation/${navigationId}`)
+    fetch(`http://localhost:3000/api/navigation/${navigationId}`)
       .then(res => res.json())
       .then(res => {
             setNavigation(res.data)})
@@ -48,7 +48,6 @@ setNavigation(links)
 const updatedLinkHendler = (link) => {
 let newLinks = navigation.filter(nav => nav.id != link.id);
   let newNav = navigation.slice();
-  console.log(link)
   newNav.splice(link.current_position, 1);
   newNav.splice(link.current_position, 0, link)
   setNavigation(newNav)
@@ -57,9 +56,6 @@ let newLinks = navigation.filter(nav => nav.id != link.id);
   //When link was draged and droped update state
   //to show navigation with new links order
   let onDragEnd=(result)=>{
-    // if (!result.destination) {
-    //   return;
-    // }
     let sourceIdx = parseInt(result.source.index)
     let destIdx = parseInt(result.destination.index)
     let draggedLink = navigation[sourceIdx]
@@ -72,7 +68,7 @@ let newLinks = navigation.filter(nav => nav.id != link.id);
     setNavigation(newNav);
 
   //UPDATE navigation links current_position request to the server
-    fetch(`https://navigation-apii.herokuapp.com/api/navigation/${navigationId}`,
+    fetch(`http://localhost:3000/api/navigation/${navigationId}`,
       {
         method: 'put',
         headers: { 'Content-Type': 'application/json' },

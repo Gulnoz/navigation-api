@@ -1,5 +1,4 @@
 import React, {useState, useEffect}from 'react';
-import logo from './logo.svg';
 import './App.css';
 import '@atlaskit/css-reset';
 import Navigation from './Components/Navigation'
@@ -9,6 +8,7 @@ function App() {
   
   const [navigation, setNavigation] = useState(null);
   const [navigationId, setNavigationId] = useState(1);
+  
   useEffect(() => {
   
     // GET Links using navigation id request from the server
@@ -20,7 +20,7 @@ function App() {
   
   // CREATE new link request to the server
   let createLinkHendler=()=>{
-    fetch('https://navigation-apii.herokuapp.com/api/links',
+    fetch('http://localhost:3000/api/links',
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

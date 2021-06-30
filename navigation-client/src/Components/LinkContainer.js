@@ -37,7 +37,6 @@ function LinkContainer(props) {
 
     return (
             <>
-                    {/* <div className='card-package card-bg'> */}
                     {editLink ? <Form closeForm={closeForm} updateLinkHendler={props.updateLinkHendler} link={props.link} />: null}
                     {!editLink ? <><div className='name'> {props.link.title} </div>
                     
@@ -46,10 +45,8 @@ function LinkContainer(props) {
                         </button> 
                        </> 
                         : null}
-                    {/* </div> */}
                     {groupEditDelete ? <div id='group-edit-del'>
                 <a className='group-edit-del-btn' onClick={editLinkHendler}><img src={edit}></img> edit</a>
-                    {/* <div className='btw-link-section'></div> */}
                 <a className='group-edit-del-btn' onClick={() => { deleteLinkHendler(props.link.id) }}>
                     <img src={trash}></img> delete</a> </div> : null}
             </>
